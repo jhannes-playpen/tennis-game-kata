@@ -1,0 +1,4 @@
+Multiple attempts at solving the tennis game kata. Each attempt is in a separate branch.
+
+See http://codingdojo.org/cgi-bin/wiki.pl?KataTennis for more on the Tennis Kata.
+
