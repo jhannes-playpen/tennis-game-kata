@@ -14,44 +14,32 @@ public class TennisGame {
     }
 
     public String getScore() {
-        if (isGameWon()) return getLeadingPlayer() + " wins";
-        if (isAdvantage()) return "advantage " + getLeadingPlayer();
-        if (isGameDeuce()) return "deuce";
-        if (isGameEven()) return getScoreName(playerOneScore) + "-all";
-        return getScoreName(playerOneScore) + "-" + getScoreName(playerTwoScore);
-    }
-
-    private boolean isGameDeuce() {
-        return isGameEven() && getHigherScore() >= 3;
-    }
-
-    private boolean isGameWon() {
-        return getHigherScore() >= 4 && getHigherScore() > getLowerScore() + 1;
-    }
-
-    private boolean isAdvantage() {
-        return getHigherScore() >= 4 && getHigherScore() == getLowerScore()+1;
-    }
-
-    private boolean isGameEven() {
-        return playerOneScore == playerTwoScore;
+        if (playerOneScore >= 4 || playerTwoScore >= 4) {
+            if (playerOneScore > playerTwoScore + 1) {
+                return "player one wins";
+            }
+            if (playerTwoScore > playerOneScore + 1) {
+                return "player two wins";
+            }
+            if (playerOneScore == playerTwoScore+1) {
+                return "advantage player one";
+            }
+            if (playerTwoScore == playerOneScore+1) {
+                return "advantage player two";
+            }
+        }
+        if (playerOneScore != playerTwoScore) {
+            return getScoreName(playerOneScore) + "-" + getScoreName(playerTwoScore);
+        } else if (playerOneScore >= 3) {
+            return "deuce";
+        } else {
+            return getScoreName(playerOneScore) + "-all";
+        }
     }
 
     private String getScoreName(int score) {
         String[] scoreNames = new String[] { "love", "fifteen", "thirty", "forty" };
         return scoreNames[score];
-    }
-
-    private int getHigherScore() {
-        return playerOneScore > playerTwoScore ? playerOneScore : playerTwoScore;
-    }
-
-    private int getLowerScore() {
-        return playerOneScore > playerTwoScore ? playerTwoScore : playerOneScore;
-    }
-
-    private String getLeadingPlayer() {
-        return playerOneScore > playerTwoScore ? "player one" : "player two";
     }
 
 
