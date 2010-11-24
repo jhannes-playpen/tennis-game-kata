@@ -28,19 +28,14 @@ public class TennisGame {
                 return "advantage player two";
             }
         }
+        String[] scoreNames = new String[] { "love", "fifteen", "thirty", "forty" };
         if (playerOneScore != playerTwoScore) {
-            return getScoreName(playerOneScore) + "-" + getScoreName(playerTwoScore);
+            return scoreNames[playerOneScore] + "-" + scoreNames[playerTwoScore];
         } else if (playerOneScore >= 3) {
             return "deuce";
         } else {
-            return getScoreName(playerOneScore) + "-all";
+            return scoreNames[playerOneScore] + "-all";
         }
     }
-
-    private String getScoreName(int score) {
-        String[] scoreNames = new String[] { "love", "fifteen", "thirty", "forty" };
-        return scoreNames[score];
-    }
-
 
 }
